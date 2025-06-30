@@ -1,0 +1,22 @@
+# === LLM + Agentic AI ===
+langchain>=0.1.16
+langchain-community>=0.0.30
+crewai>=0.22.8
+
+# === Vector Store ===
+chromadb
+sentence-transformers
+
+# === PDF Parsing ===
+PyMuPDF
+pdfminer.six
+
+# === Frontend UI ===
+streamlit
+
+# === Utils & Extras ===
+pydantic>=2.0
+python-dotenv
+requests
+tqdm
+numpy
