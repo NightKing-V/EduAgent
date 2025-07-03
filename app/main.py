@@ -7,8 +7,8 @@ from typing import Optional
 # 📌 Make sure Python can find other app modules
 sys.path.append(os.path.abspath(os.path.dirname(__file__)))
 
-from app.utils.uuid_gen import generate_uuid
-from app.utils.file_handler import cleanup_temp_file, save_uploaded_file_temporarily
+from utils.uuid_gen import generate_uuid
+from utils.file_handler import cleanup_temp_file, save_uploaded_file_temporarily
 
 class UISessionManager:
     """Manages UI session state and initialization"""
@@ -58,7 +58,7 @@ class ResearchAgentUI:
                 )
                 
                 # Import and run ingestion pipeline
-                from app.pipelines.ingestion_pipeline import create_ingestion_pipeline
+                from pipelines.ingestion_pipeline import create_ingestion_pipeline
                 
                 st.info("Running ResearchAgent... (this may take a moment)")
                 
@@ -104,7 +104,7 @@ class ResearchAgentUI:
         
         if st.button("Ask ResearchAgent") and question.strip():
             try:
-                from app.agents.research_agent import create_research_agent_service
+                from agents.research_agent import create_research_agent_service
                 
                 with st.spinner("ResearchAgent is thinking..."):
                     # Use the OOP service
@@ -169,7 +169,7 @@ class ExamAgentUI:
                     study_paths.append(note_path)
                 
                 # Import and run exam analysis
-                from app.agents.exam_agent import create_exam_agent_service
+                from agents.exam_agent import create_exam_agent_service
                 
                 st.info("Running ExamAgent... (this may take a moment)")
                 

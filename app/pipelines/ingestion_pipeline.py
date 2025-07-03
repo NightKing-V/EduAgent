@@ -2,9 +2,9 @@
 import os
 from typing import Dict, List
 from dataclasses import dataclass
-from app.tools.pdf_chunk_loader import extract_and_chunk_pdf
-from app.services.text_processor import TextProcessorService
-from app.services.vector_store_service import VectorStoreService, create_vector_store_service
+from tools.pdf_chunk_loader import extract_and_chunk_pdf
+from services.text_processor import TextProcessorService
+from services.vector_store_service import VectorStoreService, create_vector_store_service
 
 @dataclass
 class IngestionResult:
@@ -55,7 +55,7 @@ class IngestionPipeline:
 
 def create_ingestion_pipeline() -> IngestionPipeline:
     """Factory function to create a configured ingestion pipeline"""
-    from app.services.text_processor import get_text_processor
+    from services.text_processor import get_text_processor
     
     text_processor = get_text_processor()
     vector_store_service = create_vector_store_service()

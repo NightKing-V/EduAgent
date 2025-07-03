@@ -3,9 +3,9 @@ from typing import List, Dict, Optional
 from dataclasses import dataclass
 from abc import ABC, abstractmethod
 from crewai import Agent, Task, Crew
-from app.llm.llm_client import get_llm
-from app.tools.pdf_chunk_loader import create_pdf_chunking_service, ChunkingConfig
-from app.services.text_processor import TextProcessorService, get_text_processor
+from llm.llm_client import get_crewai_llm
+from tools.pdf_chunk_loader import create_pdf_chunking_service, ChunkingConfig
+from services.text_processor import TextProcessorService, get_text_processor
 
 @dataclass
 class ExamAnalysisRequest:
@@ -38,7 +38,7 @@ class LLMExamAnalyzer(ExamAnalyzer):
     
     def __init__(self, text_processor: TextProcessorService):
         self.text_processor = text_processor
-        self.llm = get_llm()
+        self.llm = get_crewai_llm()  # Use CrewAI-compatible LLM
     
     def analyze_exam_content(self, content: str) -> List[str]:
         """Extract topics and themes from exam content"""
@@ -97,7 +97,7 @@ class ExamAgent:
     def __init__(self, analyzer: ExamAnalyzer, chunking_service=None):
         self.analyzer = analyzer
         self.chunking_service = chunking_service or create_pdf_chunking_service()
-        self.llm = get_llm()
+        self.llm = get_crewai_llm()  # Use CrewAI-compatible LLM
         self.agent = self._create_agent()
     
     def _create_agent(self) -> Agent:

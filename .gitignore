@@ -1,3 +1,5 @@
 .env
 
 app/data
+
+app/vectorstore/chromadb

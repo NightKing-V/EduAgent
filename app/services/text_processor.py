@@ -1,14 +1,14 @@
 # app/services/text_processor.py
 from abc import ABC, abstractmethod
 from typing import List, Union
-from app.llm.llm_client import get_llm
+from llm.llm_client import get_llm
 from langchain.prompts import ChatPromptTemplate
 
 class TextProcessor(ABC):
     """Abstract base class for text processing operations"""
     
     def __init__(self):
-        self.llm = get_llm()
+        self.llm = get_llm()  # Use CrewAI-compatible LLM
     
     @abstractmethod
     def process(self, text: Union[str, List[str]]) -> str:

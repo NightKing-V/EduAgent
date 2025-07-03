@@ -2,8 +2,8 @@
 from typing import Optional
 from dataclasses import dataclass
 from crewai import Agent, Task, Crew
-from app.services.vector_store_service import VectorStoreService, create_vector_store_service
-from app.llm.llm_client import get_llm
+from services.vector_store_service import VectorStoreService, create_vector_store_service
+from llm.llm_client import get_crewai_llm
 
 @dataclass
 class ResearchQuery:
@@ -20,7 +20,7 @@ class ResearchAgent:
     
     def __init__(self, vector_store_service: VectorStoreService):
         self.vector_store_service = vector_store_service
-        self.llm = get_llm()
+        self.llm = get_crewai_llm()  # Use CrewAI-compatible LLM
         self.agent = self._create_agent()
     
     def _create_agent(self) -> Agent:
