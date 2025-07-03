@@ -1,4 +1,4 @@
-from app.llm.mistral_client import get_llm
+from app.llm.llm_client import get_llm
 from langchain.prompts import ChatPromptTemplate
 from langchain.tools import Tool
 
