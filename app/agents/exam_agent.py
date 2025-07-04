@@ -145,7 +145,6 @@ class ExamAgent:
         )
     
     def analyze_exam_and_materials(self, request: ExamAnalysisRequest) -> ExamAnalysisResult:
-        """Main method to analyze exam and study materials"""
         # Extract content from exam file
         exam_content = self._extract_content_from_files([request.exam_file_path])
         
@@ -193,7 +192,6 @@ class ExamAgentService:
                                exam_file_path: str, 
                                study_material_paths: List[str], 
                                chat_id: str) -> ExamAnalysisResult:
-        """Convenience method for exam analysis"""
         request = ExamAnalysisRequest(
             exam_file_path=exam_file_path,
             study_material_paths=study_material_paths,
@@ -205,15 +203,3 @@ class ExamAgentService:
 def create_exam_agent_service() -> ExamAgentService:
     """Create an exam agent service with default configuration"""
     return ExamAgentService()
-
-# Legacy function for backward compatibility
-def analyze_exam_and_materials(exam_file_path: str, study_material_paths: List[str], chat_id: str) -> Dict:
-    """Legacy function for backward compatibility"""
-    service = create_exam_agent_service()
-    result = service.analyze_exam_preparation(exam_file_path, study_material_paths, chat_id)
-    
-    return {
-        "topics": result.extracted_topics,
-        "coverage": result.study_recommendations,
-        "recommendations": result.preparation_suggestions
-    }

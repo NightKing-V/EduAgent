@@ -72,12 +72,3 @@ def create_vector_store_service(persist_directory: str = "app/vectorstore/chroma
     """Create a vector store service with ChromaDB backend"""
     chroma_store = ChromaVectorStore(persist_directory)
     return VectorStoreService(chroma_store)
-
-# Backward compatibility functions
-def store_chunks(chat_id: str, chunks: List[str], metadata: Optional[Dict] = None):
-    service = create_vector_store_service()
-    service.store_chunks(chat_id, chunks, metadata)
-
-def get_query_chunks(chat_id: str, query: str, top_k: int = 4) -> List[Document]:
-    service = create_vector_store_service()
-    return service.get_query_chunks(chat_id, query, top_k)

@@ -52,7 +52,6 @@ class ResearchAgent:
         return "\n\n".join([doc.page_content for doc in docs])
     
     def _create_research_task(self, query: ResearchQuery, context: str) -> Task:
-        """Create a research task with the given context"""
         return Task(
             description=f"""
             Answer this user question about the research paper: '{query.question}'
@@ -70,15 +69,6 @@ class ResearchAgent:
         )
     
     def answer_question(self, query: ResearchQuery) -> str:
-        """
-        Answer a research question using the knowledge base.
-        
-        Args:
-            query: ResearchQuery object containing the question and metadata
-            
-        Returns:
-            String answer from the research agent
-        """
         # Get relevant context
         context = self._get_relevant_context(query)
         
@@ -116,9 +106,3 @@ class ResearchAgentService:
 def create_research_agent_service() -> ResearchAgentService:
     """Create a research agent service with default configuration"""
     return ResearchAgentService()
-
-# Backward compatibility function
-def run_research_qna(question: str, chat_id: str) -> str:
-    """Legacy function for backward compatibility"""
-    service = create_research_agent_service()
-    return service.ask_question(question, chat_id)

@@ -1,7 +1,6 @@
-# app/tools/pdf_chunk_loader.py
 from abc import ABC, abstractmethod
 from typing import List, Optional
-import fitz  # PyMuPDF
+import fitz
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain.tools import Tool
 from dataclasses import dataclass
@@ -64,6 +63,8 @@ def create_pdf_chunking_service(config: Optional[ChunkingConfig] = None) -> Docu
     processor = PDFProcessor()
     chunker = TextChunker(chunking_config)
     return DocumentChunkingService(processor, chunker)
+
+
 
 def extract_and_chunk_pdf(path: str, chunk_size=800, chunk_overlap=100) -> List[str]:
     """Legacy function for backward compatibility"""
